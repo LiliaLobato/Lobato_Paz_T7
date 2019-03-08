@@ -48,6 +48,45 @@
 #include "MK64F12.h"
 #include "GPIO.h"
 
+static void (*gpio_C_callback)(void) = 0;
+static void (*gpio_A_callback)(void) = 0;
+
+static gpio_interrupt_flags_t g_intr_status_flag = {0};
+
+void GPIO_callback_init(gpio_port_name_t port_name,void (*handler)(void))
+{
+	if(GPIO_A == port_name)
+	{
+		gpio_A_callback = handler;
+	}
+	else
+	{
+		gpio_C_callback = handler;
+	}
+}
+
+void PORTC_IRQHandler(void)
+{
+	if(gpio_C_callback)
+	{
+		gpio_C_callback();
+	}
+
+	GPIO_clear_interrupt(GPIO_C);
+
+}
+
+
+void PORTA_IRQHandler(void)
+{
+	if(gpio_A_callback)
+	{
+		gpio_A_callback();
+	}
+
+	GPIO_clear_interrupt(GPIO_A);
+}
+
 
 void GPIO_clear_interrupt(gpio_port_name_t port_name)
 {

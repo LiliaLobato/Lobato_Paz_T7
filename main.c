@@ -19,7 +19,7 @@ typedef enum {
 // función para decidir que led se enciende
 void encender_led(led_color led);
 
-int main(void) {
+int main1(void) {
 	/**Variable to capture the input value*/
 	uint32_t input_value_SW3 = 0;
 	uint32_t input_value_SW2 = 0;
@@ -113,38 +113,5 @@ int main(void) {
 	}
 
 	return 0;
-}
-
-//Permite encender y apagar cada color sin importar el estado previo
-void encender_led(led_color led) {
-	switch (led) {
-	case COLOR_GREEN:
-		RGB_white_off();
-		RGB_green_on();
-		break;
-	case COLOR_BLUE:
-		RGB_white_off();
-		RGB_blue_on();
-		break;
-	case COLOR_PURPLE:
-		RGB_white_off();
-		RGB_purple_on();
-		break;
-	case COLOR_RED:
-		RGB_white_off();
-		RGB_red_on();
-		break;
-	case COLOR_YELLOW:
-		RGB_white_off();
-		RGB_yellow_on();
-		break;
-	case COLOR_WHITE:
-		RGB_white_off();
-		RGB_white_on();
-		break;
-	default:
-		break;
-	}
-
 }
 

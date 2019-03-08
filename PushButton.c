@@ -9,7 +9,7 @@
 #include "MK64F12.h"
 #include "GPIO.h"
 
-gpio_pin_control_register_t input_intr_config = GPIO_MUX1 | GPIO_PE | GPIO_PS;	//Configuración del GPIO
+gpio_pin_control_register_t input_intr_config = GPIO_MUX1 | GPIO_PE | GPIO_PS | INTR_FALLING_EDGE;	//Configuración del GPIO
 
 void PushButton_sw2_config(void) {
 	GPIO_clock_gating(GPIO_C);								  //Activa el puerto C
